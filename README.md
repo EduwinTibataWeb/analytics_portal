@@ -34,27 +34,26 @@ El enfoque principal no es la complejidad funcional, sino:
 ## Estructura del proyecto
 
 analytics_portal/
+├── analytics_portal/        # Configuración principal del proyecto
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
 │
-├── analytics_portal/ # Configuración principal del proyecto
-│ ├── settings.py
-│ ├── urls.py
-│ ├── asgi.py
-│ └── wsgi.py
+├── dashboard/               # App principal del proyecto
+│   ├── views.py
+│   ├── urls.py
+│   ├── apps.py
+│   └── migrations/
 │
-├── dashboard/ # App principal del proyecto
-│ ├── views.py
-│ ├── urls.py
-│ ├── apps.py
-│ └── migrations/
+├── templates/               # Templates HTML
+│   ├── base.html
+│   └── dashboard/
+│       └── dashboard.html
 │
-├── templates/ # Templates HTML
-│ ├── base.html
-│ └── dashboard/
-│ └── dashboard.html
-│
-├── static/ # Archivos estáticos
-│ └── css/
-│ └── main.css
+├── static/                  # Archivos estáticos
+│   └── css/
+│       └── main.css
 │
 ├── manage.py
 ├── requirements.txt

@@ -27,43 +27,6 @@ El enfoque principal fue construir una solución clara, escalable y alineada con
 
 ---
 
-## Estructura del proyecto
-
-analytics_portal/
-├── analytics_portal/
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── asgi.py
-│   └── wsgi.py
-│
-├── dashboard/
-│   ├── __init__.py
-│   ├── views.py
-│   ├── urls.py
-│   ├── apps.py
-│   └── migrations/
-│
-├── templates/
-│   ├── base.html
-│   └── dashboard/
-│       └── dashboard.html
-│
-├── static/
-│   ├── css/
-│   │   └── main.css
-│   ├── js/
-│   │   └── table.js
-│   └── img/
-│       ├── favicon.ico
-│       └── img_analytics_portal.webp
-│
-├── manage.py
-├── requirements.txt
-└── README.md
-
----
-
 ## Pasos para ejecutar el proyecto en local
 
 1. Clonar el repositorio

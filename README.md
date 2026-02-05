@@ -30,7 +30,7 @@ El enfoque principal fue construir una solución clara, escalable y alineada con
 ## Pasos para ejecutar el proyecto en local
 
 1. Clonar el repositorio
-   git clone <url-del-repositorio>
+   git clone https://github.com/EduwinTibataWeb/analytics_portal.git
    cd analytics_portal
 
 2. Crear y activar entorno virtual

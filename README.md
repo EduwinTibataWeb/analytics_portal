@@ -1,122 +1,124 @@
-# Analytics Portal – Prueba Técnica Django
+# Analytics Portal – Prueba Técnica CALA Analytics
 
-Proyecto desarrollado como parte de la prueba técnica para **CALA Analytics**.  
-Consiste en un portal analítico simple construido con Django, cuyo objetivo es demostrar buenas prácticas de estructura, separación de responsabilidades y claridad en el flujo backend–frontend, sin persistencia de datos.
-
-**Autor:** Eduwin Alejandro Tibata Bolívar  
-**Rol:** Ingeniero en sistemas / Desarrollador Junior  
-**Tecnología principal:** Django
+Autor: Eduwin Alejandro Tibata Bolívar  
+Rol: Ingeniero en Sistemas / Desarrollador Junior  
+Empresa: CALA Analytics  
+Tipo: Prueba Técnica
 
 ---
 
-## Descripción general
+## Descripción del proyecto
 
-Este proyecto implementa un dashboard analítico básico que muestra información tabular simulada desde el backend hacia el frontend, utilizando el sistema de templates de Django.
+Analytics Portal es una aplicación web desarrollada con Django que simula un portal analítico para visualizar métricas de negocio. El proyecto permite listar datos analíticos, aplicar filtros, ordenar información, buscar por palabras clave y añadir nuevos registros mediante una interfaz dinámica.
 
-El enfoque principal no es la complejidad funcional, sino:
-- La correcta estructuración del proyecto
-- La claridad del código
-- El uso de buenas prácticas habituales en proyectos reales
-- La facilidad de lectura y evaluación por parte del equipo técnico
+El enfoque principal fue construir una solución clara, escalable y alineada con buenas prácticas del mercado, priorizando legibilidad, organización del código y experiencia de usuario.
 
 ---
 
-## Tecnologías utilizadas
+## Funcionalidades principales
 
-- Python 3
-- Django
-- HTML5
-- CSS3
-- SQLite (solo configuración por defecto, no utilizada)
+- Visualización de métricas en tabla
+- Búsqueda dinámica por cliente o métrica
+- Ordenamiento por columnas (fecha, cliente, métrica, valor)
+- Ordenamiento sincronizado entre select y encabezados
+- Modal para añadir nuevos datos sin recargar la página
+- Gestión de archivos estáticos (CSS, JS, imágenes)
+- Estructura escalable para crecimiento futuro
 
 ---
 
 ## Estructura del proyecto
 
 analytics_portal/
-├── analytics_portal/        # Configuración principal del proyecto
+├── analytics_portal/
+│   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   ├── asgi.py
 │   └── wsgi.py
 │
-├── dashboard/               # App principal del proyecto
+├── dashboard/
+│   ├── __init__.py
 │   ├── views.py
 │   ├── urls.py
 │   ├── apps.py
 │   └── migrations/
 │
-├── templates/               # Templates HTML
+├── templates/
 │   ├── base.html
 │   └── dashboard/
 │       └── dashboard.html
 │
-├── static/                  # Archivos estáticos
-│   └── css/
-│       └── main.css
+├── static/
+│   ├── css/
+│   │   └── main.css
+│   ├── js/
+│   │   └── table.js
+│   └── img/
+│       ├── favicon.ico
+│       └── img_analytics_portal.webp
 │
 ├── manage.py
 ├── requirements.txt
 └── README.md
 
+---
+
+## Pasos para ejecutar el proyecto en local
+
+1. Clonar el repositorio
+   git clone <url-del-repositorio>
+   cd analytics_portal
+
+2. Crear y activar entorno virtual
+   python -m venv env
+   env\Scripts\activate
+
+3. Instalar dependencias
+   pip install -r requirements.txt
+
+4. Ejecutar migraciones
+   python manage.py migrate
+
+5. Levantar el servidor
+   python manage.py runserver
+
+6. Acceder desde el navegador
+   http://127.0.0.1:8000/
 
 ---
 
-## Decisiones técnicas
+## Decisiones técnicas tomadas
 
-### Uso de datos simulados
-La aplicación no utiliza base de datos ni modelos.  
-Los datos se definen directamente en la vista (`views.py`) como estructuras en memoria, ya que el objetivo del ejercicio es demostrar el flujo Django y no la persistencia.
-
-### Separación de responsabilidades
-- La lógica de negocio se mantiene en las vistas.
-- El HTML se organiza mediante herencia de templates (`base.html`).
-- Los estilos se separan en archivos estáticos usando el sistema `staticfiles` de Django.
-
-### Templates con herencia
-Se utiliza un template base para evitar duplicación de código y facilitar la escalabilidad del proyecto, siguiendo prácticas comunes en proyectos Django reales.
+- Se utilizó Django por su robustez, claridad estructural y facilidad para escalar aplicaciones backend.
+- La lógica de filtrado y ordenamiento se implementó en JavaScript para evitar recargas innecesarias y mejorar la experiencia de usuario.
+- Se separaron responsabilidades entre backend (datos y renderizado) y frontend (interacción y presentación).
+- Se diseñó una estructura de carpetas alineada con estándares de proyectos reales, incluso si no todas las carpetas se usan en esta etapa.
+- El modal para añadir datos se implementó de forma nativa para reducir dependencias externas.
+- Se mantuvo el código simple, legible y fácilmente mantenible.
 
 ---
 
-## Cómo ejecutar el proyecto en local
+## Principales aprendizajes
 
-1. Clonar el repositorio:
-git clone https://github.com/EduwinTibataWeb/analytics_portal
-
-
-2. Crear y activar un entorno virtual:
-python -m venv env
-env\Scripts\activate
-
-
-3. Instalar dependencias:
-pip install -r requirements.txt
-
-
-4. Ejecutar el servidor:
-python manage.py runserver
-
-
-5. Abrir en el navegador:
-http://127.0.0.1:8000/
-
+- Importancia de una buena estructura inicial del proyecto para facilitar escalabilidad.
+- Sincronización de estado entre componentes del frontend mejora la experiencia de usuario.
+- Separar lógica de negocio y presentación reduce complejidad futura.
+- Implementar funcionalidades pequeñas pero completas aporta más valor que soluciones complejas sin terminar.
+- Documentar correctamente el proyecto facilita su comprensión para otros desarrolladores y evaluadores.
 
 ---
 
-## Notas importantes
+## Posibles mejoras futuras
 
-- El archivo `db.sqlite3` no es utilizado; Django lo genera automáticamente por defecto.
-- No se incluyen variables de entorno ni archivos sensibles en el repositorio.
-- El proyecto está preparado para escalar agregando modelos, nuevas apps o conexión a base de datos si fuera requerido.
-
----
-
-## Conclusión
-
-Este proyecto refleja un enfoque ordenado, claro y profesional para una prueba técnica de nivel junior, priorizando la estructura, la mantenibilidad y la comprensión del flujo completo de una aplicación Django.
+- Persistencia real de datos mediante base de datos
+- Integración con BigQuery como fuente de datos analíticos
+- Paginación de resultados
+- Autenticación de usuarios
+- Visualización de métricas mediante gráficos
 
 ---
 
-Desarrollado por  
-**Eduwin Alejandro Tibata Bolívar**  
-Prueba técnica – CALA Analytics
+## Notas finales
+
+Este proyecto fue desarrollado como parte de una prueba técnica, enfocándose en buenas prácticas, claridad de código y pensamiento analítico más que en complejidad innecesaria.

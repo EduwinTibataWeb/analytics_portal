@@ -1,34 +1,78 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Dashboard | Analytics Portal
 {% endblock %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+<section class="banner__container">
+    <div class="banner__text">
+        <h1>{{ title }}</h1>
+        <button class="banner__btn_primary">Añadir datos</button>
+    </div>
+    <figure>
+        <img src="{% static 'img/img_analytics_portal.webp' %}" alt="Analytics Banner">
+    </figure>
+</section>
+<section class="table__container">
+    <div class="table__controls">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por cliente o métrica"
+        />
 
-<table>
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Métrica</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in data %}
-        <tr>
-            <td>{{ row.fecha }}</td>
-            <td>{{ row.cliente }}</td>
-            <td>{{ row.metrica }}</td>
-            <td>{{ row.valor }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">No hay datos disponibles</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <select id="orderSelect">
+            <option value="">Ordenar por</option>
+            <option value="fecha_desc">Más recientes</option>
+            <option value="fecha_asc">Más antiguas</option>
+            <option value="valor_desc">Mayor valor</option>
+            <option value="valor_asc">Menor valor</option>
+        </select>
+    </div>
+
+    <table class="data__table" id="dataTable">
+        <thead>
+            <tr>
+                <th data-column="fecha">Fecha</th>
+                <th data-column="cliente">Cliente</th>
+                <th data-column="metrica">Métrica</th>
+                <th data-column="valor">Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.fecha }}</td>
+                <td>{{ row.cliente }}</td>
+                <td>{{ row.metrica }}</td>
+                <td>{{ row.valor }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay datos disponibles</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<!-- Modal -->
+<div class="modal" id="addDataModal">
+    <div class="modal__content">
+        <h2>Añadir dato</h2>
+
+        <form id="addDataForm">
+            <input type="date" name="fecha" required />
+            <input type="text" name="cliente" placeholder="Cliente" required />
+            <input type="text" name="metrica" placeholder="Métrica" required />
+            <input type="number" name="valor" placeholder="Valor" required />
+
+            <div class="modal__actions">
+                <button type="button" id="closeModal">Cancelar</button>
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
